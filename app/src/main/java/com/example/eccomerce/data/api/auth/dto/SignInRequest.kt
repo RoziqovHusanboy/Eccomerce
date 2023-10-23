@@ -1,4 +1,4 @@
-package com.example.eccomerce.data.api.dto
+package com.example.eccomerce.data.api.auth.dto
 
 import com.google.gson.annotations.SerializedName
 

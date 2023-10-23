@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.eccomerce.R
 import com.example.eccomerce.databinding.FragmentSignInBinding
+import com.example.eccomerce.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,9 +54,10 @@ class Sign_In_Fragment : Fragment() {
         binding.signIn.setOnClickListener {
             viewModel.signIn(binding.username.toString(),binding.password.toString())
         }
+        binding.signUp.setOnClickListener {
+            findNavController().navigate(Sign_In_FragmentDirections.actionSignInFragmentToSignUpFragment())
+        }
     }
-private fun toast(massage:Int){
-    Toast.makeText(requireContext(), massage, Toast.LENGTH_SHORT).show()
-}
+
 
 }

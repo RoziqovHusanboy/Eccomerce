@@ -6,18 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.eccomerce.R
 import com.example.eccomerce.databinding.FragmentOnboardingBinding
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class OnboardingFragment : Fragment() {
 
     private lateinit var binding:FragmentOnboardingBinding
     private val adapter = OnboardingAdapter()
+    private val viewModel by viewModels<OnboardingViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +46,7 @@ class OnboardingFragment : Fragment() {
             setSliderWidth(resources.getDimension(R.dimen.dp_15))
             setSliderHeight(resources.getDimension(R.dimen.dp_8))
             setSlideMode(IndicatorSlideMode.WORM)
-            setIndicatorStyle(IndicatorStyle.CIRCLE)
+            setIndicatorStyle(IndicatorStyle.ROUND_RECT)
             setPageSize(adapter.itemCount)
             notifyDataChanged()
         }
@@ -69,6 +72,7 @@ class OnboardingFragment : Fragment() {
         })
         next.setOnClickListener {
             if (pager.currentItem == adapter.itemCount-1){
+                viewModel.onboarding()
                 findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToSignInFragment())
 
             }else {

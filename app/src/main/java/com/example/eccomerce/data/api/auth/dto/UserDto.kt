@@ -1,4 +1,4 @@
-package com.example.eccomerce.data.api.dto
+package com.example.eccomerce.data.api.auth.dto
 
 import com.example.eccomerce.domain.model.User
 import com.google.gson.annotations.SerializedName

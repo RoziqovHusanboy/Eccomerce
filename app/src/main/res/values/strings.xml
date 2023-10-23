@@ -20,4 +20,14 @@
     <string name="fragment_sign_in_username">Username</string>
     <string name="fragment_sign_in_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</string>
     <string name="fragment_sign_in_title">Welcome back</string>
+    <string name="fragment_sign_up_title">Create your accaount</string>
+    <string name="fragment_sign_up_email">Email</string>
+    <string name="fragmnet_sign_up_register">Register</string>
+
+    <string name="fragment_sign_up_terms_and_privacy">By tapping Register you accept our %s and %s</string>
+    <string name="termsof_use">terms of use</string>
+    <string name="privacy_policy">privacy policy</string>
+    <string name="fragment_sign_up_have_account">Alredy have an account?</string>
+    <string name="fragment_sign_up_sign_in">Sign in</string>
+    <string name="already_registered">This email is already registered</string>
 </resources>
