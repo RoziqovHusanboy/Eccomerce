@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    app:startDestination="@id/onboardingFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/sign_In_Fragment"
         android:name="com.example.eccomerce.presintation.sign_in.Sign_In_Fragment"
         android:label="fragment_sign__in_"
-        tools:layout="@layout/fragment_sign__in_" >
+        tools:layout="@layout/fragment_sign__in_">
         <action
             android:id="@+id/action_sign_In_Fragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
             app:popUpTo="@id/signUpFragment"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment"
@@ -31,36 +31,185 @@
         android:id="@+id/signUpFragment"
         android:name="com.example.eccomerce.presintation.sign_up.SignUpFragment"
         android:label="SignUpFragment"
-        tools:layout="@layout/fragment_sign__up_"
-        >
+        tools:layout="@layout/fragment_sign__up_">
         <action
             android:id="@+id/action_signUpFragment_to_sign_In_Fragment"
             app:destination="@id/sign_In_Fragment"
             app:popUpTo="@id/sign_In_Fragment"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.eccomerce.presintation.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/to_categoriesFragment"
+            app:destination="@id/categoriesFragment" />
+        <action
+            android:id="@+id/to_productsFragment"
+            app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/to_detail_fragment"
+            app:destination="@id/detailFragment" />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.example.eccomerce.presintation.categories.CategoriesFragment"
+        android:label="CategoriesFragment"
+        tools:layout="@layout/fragment_categories">
+
+        <action
+            android:id="@+id/to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.example.eccomerce.presintation.products.ProductsFragment"
+        android:label="ProductsFragment"
+        tools:layout="@layout/fragment_products">
+
+        <argument
+            android:name="category"
+            app:argType="com.example.eccomerce.data.api.products.dto.Category" />
+        <action
+            android:id="@+id/to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/to_detail_fragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.eccomerce.presintation.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+
+        <argument
+            android:name="category"
+            android:defaultValue="@null"
+            app:argType="com.example.eccomerce.data.api.products.dto.Category"
+            app:nullable="true" />
+
+        <argument
+            android:name="wishlist"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+
+        <action
+            android:id="@+id/to_filterFragment"
+            app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/to_detail_fragment"
+            app:destination="@id/detailFragment" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.example.eccomerce.presintation.filter.FilterFragment"
+        android:label="FilterFragment"
+        tools:layout="@layout/fragment_filter">
+        <argument
+            android:name="filter"
+            app:argType="com.example.eccomerce.domain.model.ProductQuery" />
+    </fragment>
 
     <action
         android:id="@+id/to_onboardingFragment"
-         app:destination="@id/onboardingFragment"
-        app:popUpTo="@id/main"/>
+        app:destination="@id/onboardingFragment"
+        app:popUpTo="@id/main" />
 
     <action
         android:id="@+id/to_signInFragment"
         app:destination="@id/sign_In_Fragment"
-        app:popUpTo="@id/main"/>
+        app:popUpTo="@id/main" />
 
     <action
         android:id="@+id/to_homeFragment"
         app:destination="@id/homeFragment"
-        app:popUpTo="@id/main"/>
+        app:popUpTo="@id/main" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.eccomerce.presintation.detail.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail">
+
+        <!--        <deepLink-->
+        <!--            android:autoVerify="true"-->
+        <!--            app:uri="3c710d4e-1a0d-4c16-89a9-bc207ee582a6.mock.pstmn.io/products[id]"/>-->
+
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <action
+            android:id="@+id/to_detail_fragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.example.eccomerce.presintation.orders.OrdersFragment"
+        android:label="OrdersFragment"
+        tools:layout="@layout/fragment_orders" >
+        <action
+            android:id="@+id/action_ordersFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.eccomerce.presintation.cart.CartFragment"
+        android:label="CartFragment"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/to_detail_fragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wishlistFragment"
+        android:name="com.example.eccomerce.presintation.wishlist.WishlistFragment"
+        android:label="WishlistFragment"
+        tools:layout="@layout/fragment_wishlist">
+
+        <action
+            android:id="@+id/to_DetailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/to_searchFragment"
+            app:destination="@+id/searchFragment">
+            <argument
+                android:name="wishlist"
+                android:defaultValue="true"
+                app:argType="boolean" />
+        </action>
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.eccomerce.presintation.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.eccomerce.presintation.map.MapFragment"
+        android:label="MapFragment"
+        tools:layout="@layout/fragment_map">
+        <argument
+            android:name="order"
+            app:argType="integer"/>
+    </fragment>
 
 
 </navigation>

@@ -1,0 +1,12 @@
+<RadioButton
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:button="@null"
+    android:buttonTint="@color/orange"
+    android:checked="false"
+    android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+    tools:text="@string/fragment_filter_70_plus_discount"
+    android:textColor="@color/dark"
+    android:textSize="16sp"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

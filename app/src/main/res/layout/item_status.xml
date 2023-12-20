@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="56dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="7dp"
+    app:strokeColor="@color/gray_1"
+    android:layout_marginHorizontal="9dp"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        >
+        <ImageView
+            android:id="@+id/indicator"
+            android:layout_width="11dp"
+            android:layout_height="11dp"
+            app:layout_goneMarginStart="18dp"
+            android:src="@drawable/indecator_status"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/title"
+            android:layout_marginStart="27dp"
+            android:layout_marginEnd="4dp"
+            />
+
+        <TextView
+            android:id="@id/title"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="On Delivery"
+            android:textSize="16sp"
+            android:textColor="@color/dark"
+            app:layout_constraintStart_toEndOf="@id/indicator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+        
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            app:dividerColor="@color/gray_1"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

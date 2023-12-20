@@ -20,7 +20,7 @@
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             tools:src="@tools:sample/backgrounds/scenic" />
     </com.google.android.material.card.MaterialCardView>
 
@@ -41,6 +41,6 @@
         android:layout_marginTop="2dp"
         android:textColor="@color/soft_gray"
         app:layout_constraintTop_toBottomOf="@id/name"
-        tools:text="102 items"
+        tools:text="@string/item_category_count"
         android:textSize="12sp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.eccomerce.R
 import com.example.eccomerce.databinding.FragmentSignUpBinding
+import com.example.eccomerce.utils.clearLightStatusBar
 import com.example.eccomerce.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -61,6 +62,7 @@ class SignUpFragment : Fragment() {
 
 
     private fun initUI() = with(binding) {
+        clearLightStatusBar()
         register.setOnClickListener {
             viewModel.signUp(
                 username.text.toString(),

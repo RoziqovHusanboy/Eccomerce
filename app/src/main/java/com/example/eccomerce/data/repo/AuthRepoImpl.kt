@@ -9,11 +9,9 @@ import com.example.eccomerce.data.store.TokenStore
 import com.example.eccomerce.data.store.UserStore
 import com.example.eccomerce.domain.model.Destination
 import com.example.eccomerce.domain.repo.AuthRepository
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -57,7 +55,7 @@ class AuthRepoImpl @Inject constructor(
             }
         }
 
-    }
+    }.distinctUntilChanged()
 
     override suspend fun onboarded()  = onboardedStore.set(true)
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:enableOnBackInvokedCallback="true"
         android:name=".app.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -21,7 +22,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <nav-graph android:value="@navigation/main"/>
         </activity>
-    </application>
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCsCkw_FsKk5y3R3T6xNHdFSh_JZHFLkdk" />
+
+    </application>
 </manifest>

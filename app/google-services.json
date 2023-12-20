@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "838761535089",
+    "project_id": "lokmart-mohirdevv",
+    "storage_bucket": "lokmart-mohirdevv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838761535089:android:a7ad30d2a33c93c1e32dd0",
+        "android_client_info": {
+          "package_name": "com.example.eccomerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9rqy981o67tXdWhj2oZksEYnLL4LrO4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

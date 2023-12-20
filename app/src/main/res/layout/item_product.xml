@@ -22,14 +22,14 @@
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             tools:src="@tools:sample/backgrounds/scenic" />
     </com.google.android.material.card.MaterialCardView>
 
     <ImageView
         android:id="@+id/like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_margin="11dp"
         android:src="@drawable/ic_heart_uncheked"
         app:layout_constraintEnd_toEndOf="@id/imageLayout"
@@ -106,6 +106,19 @@
         app:layout_constraintStart_toStartOf="@id/name"
         app:layout_constraintTop_toBottomOf="@id/rating"
          tools:text="$12.3" />
+
+    <TextView
+        android:id="@+id/oldPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/soft_gray"
+        android:textSize="16sp"
+        android:textStyle="bold"
+         app:layout_constraintBaseline_toBaselineOf="@id/price"
+       app:layout_constraintStart_toEndOf="@id/price"
+        android:layout_marginStart="13dp"
+        tools:text="@string/item_product_price_striked" />
+
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/divider"
         android:layout_width="0dp"

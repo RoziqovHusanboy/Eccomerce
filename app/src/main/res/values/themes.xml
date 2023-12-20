@@ -5,8 +5,10 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowTranslucentNavigation">true</item>
+        <item name="colorPrimary">@color/orange</item>
     </style>
 
     <style name="Theme.Eccomerce" parent="Base.Theme.Eccomerce" />
+
 
 </resources>

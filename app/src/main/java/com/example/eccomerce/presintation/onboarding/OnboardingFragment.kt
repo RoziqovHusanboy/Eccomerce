@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.eccomerce.R
 import com.example.eccomerce.databinding.FragmentOnboardingBinding
+import com.example.eccomerce.utils.clearLightStatusBar
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +38,7 @@ class OnboardingFragment : Fragment() {
     }
 
     private fun initUI() = with(binding) {
+        clearLightStatusBar()
         pager.adapter =adapter
         indecator.apply {
 
