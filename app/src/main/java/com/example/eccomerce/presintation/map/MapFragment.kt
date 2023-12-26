@@ -1,8 +1,6 @@
 package com.example.eccomerce.presintation.map
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -19,14 +17,16 @@ import com.example.eccomerce.R
 import com.example.eccomerce.data.api.order.dto.Track
 import com.example.eccomerce.databinding.FragmentMapBinding
 import com.example.eccomerce.utils.BaseFragment
+import com.example.eccomerce.utils.addMarker
 import com.example.eccomerce.utils.dp
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.Polyline
+import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,6 +37,8 @@ class MapFragment : BaseFragment<FragmentMapBinding>(FragmentMapBinding::inflate
     private val viewModel by viewModels<MapViewModel>()
     private val args by navArgs<MapFragmentArgs>()
     private var map: GoogleMap? = null
+   private val polylines = mutableListOf<Polyline>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,8 +88,28 @@ class MapFragment : BaseFragment<FragmentMapBinding>(FragmentMapBinding::inflate
                 }.show()
         }
 
-        viewModel.route.observe(viewLifecycleOwner){
-            map?.addPolyline(it)
+        viewModel.route.observe(viewLifecycleOwner){list->
+            addPolylines(list)
+        }
+        var marker:Marker?=null
+        viewModel.driver.observe(viewLifecycleOwner){
+            marker?.remove()
+           marker = map!!.addMarker(requireContext(),R.drawable.ic_driver,79.dp,it)
+        }
+    }
+
+    private fun addPolylines(list: List<PolylineOptions>) {
+        for (i in 0 until polylines.size) {
+            polylines.removeAt(0).remove()
+        }
+        list.forEachIndexed { index, options ->
+            options.width(6.dp.toFloat())
+            val color = if (index==0) R.color.dark_gray else R.color.orange
+            options.color(ContextCompat.getColor(requireContext(),color))
+
+            map?.addPolyline(options)?.let {
+                polylines.add(it)
+            }
         }
     }
 
@@ -105,34 +127,15 @@ class MapFragment : BaseFragment<FragmentMapBinding>(FragmentMapBinding::inflate
             drawLocations(it)
         }
         viewModel.route.value?.let {
-            map.addPolyline(it)
+            addPolylines(it)
         }
     }
 
     private fun drawLocations(track: Track) {
+        map!!.addMarker(requireContext(),R.drawable.marker_from,31.dp,track.from.latLng)
+        map!!.addMarker(requireContext(),R.drawable.marker_to,37.dp,track.to.latLng)
 
-        val fromBitmap = Bitmap.createBitmap(31.dp, 31.dp, Bitmap.Config.ARGB_8888)
-        val fromCanvas = Canvas(fromBitmap)
-        val fromShape =
-            ContextCompat.getDrawable(requireContext(), R.drawable.marker_from) ?: return
-        fromShape.setBounds(0, 0, fromBitmap.width, fromBitmap.height)
-        fromShape.draw(fromCanvas)
 
-        map!!.addMarker(
-            MarkerOptions().position(track.from.latLng).anchor(.5f, .5f)
-                .icon(BitmapDescriptorFactory.fromBitmap(fromBitmap))
-        )
-
-        val toBitmap = Bitmap.createBitmap(37.dp, 37.dp, Bitmap.Config.ARGB_8888)
-        val toCanvas = Canvas(toBitmap)
-        val toShape = ContextCompat.getDrawable(requireContext(), R.drawable.marker_to) ?: return
-        toShape.setBounds(0, 0, toBitmap.width, toBitmap.height)
-        toShape.draw(toCanvas)
-
-        map!!.addMarker(
-            MarkerOptions().position(track.to.latLng).anchor(.5f, .5f)
-                .icon(BitmapDescriptorFactory.fromBitmap(toBitmap))
-        )
 
         val mapView = childFragmentManager.findFragmentById(R.id.map)?.view ?: return
         if (mapView.viewTreeObserver.isAlive.not()) return

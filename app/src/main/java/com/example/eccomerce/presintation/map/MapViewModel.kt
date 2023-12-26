@@ -2,6 +2,7 @@ package com.example.eccomerce.presintation.map
 
 import SingleLiveEvent
 import android.graphics.Color
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,6 +11,9 @@ import com.example.eccomerce.domain.repo.OrderRepository
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.PolylineOptions
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,7 +24,9 @@ class MapViewModel @Inject constructor(
 
     val track = MutableLiveData<Track>()
     val error = SingleLiveEvent<Unit>()
-    val route = MutableLiveData<PolylineOptions>()
+    val route = MutableLiveData<List<PolylineOptions>>()
+    val driver = MutableLiveData<LatLng>()
+
 
     fun getTrack(id: Int) = viewModelScope.launch {
         try {
@@ -32,35 +38,43 @@ class MapViewModel @Inject constructor(
         }
     }
 
-    private fun getDirections(track: Track) = viewModelScope.launch {
-        try {
-            val routes = orderRepository.getDirections(track)
+    private fun getDirections(track: Track):Job = viewModelScope.launch {
+       orderRepository.getDirections(track).collectLatest { pair ->
+           driver.postValue(pair.first!!)
 
-            val points = ArrayList<LatLng>()
-            val lineOptions = PolylineOptions()
+           try {
+                val lineOptionsList = mutableListOf<PolylineOptions>()
 
-            val path = routes.first()
+               pair.second.forEach {path->
 
-            for (j in path.indices) {
-                val point = path[j]
-                val lat = point["lat"]?.toDouble() ?: continue
-                val lng = point["lng"]?.toDouble() ?: continue
-                val position = LatLng(lat,lng)
-                points.add(position)
-            }
+                   val lineOptions = PolylineOptions()
+                   val points = ArrayList<LatLng>()
 
-            lineOptions.addAll(points)
-            lineOptions.width(12f)
-            lineOptions.color(Color.RED)
-            lineOptions.geodesic(true)
+                   for (j in path.indices) {
+                       val point = path[j]
+                       val lat = point["lat"]?.toDouble() ?: continue
+                       val lng = point["lng"]?.toDouble() ?: continue
+                       val position = LatLng(lat, lng)
+                       points.add(position)
+                   }
 
-            route.postValue(lineOptions)
+                   lineOptions.addAll(points)
+                   lineOptionsList.add(lineOptions)
 
-        } catch (e: Exception) {
-            e.printStackTrace()
-            error.call()
-        }
+                   route.postValue(lineOptionsList)
+               }
 
+
+
+
+
+           } catch (e: Exception) {
+               e.printStackTrace()
+               error.call()
+           }
+
+
+       }
     }
 
 }

@@ -32,10 +32,11 @@ interface OrderApi {
         @Path("id")id:Int
     ):Track
 
-    @GET("https//maps.googleapis.com/maps/api/directions/json")
+    @GET("https://maps.googleapis.com/maps/api/directions/json")
     suspend fun getDirections(
         @Query("origin")origin:String,
         @Query("destination")destination:String,
+        @Query("waypoints") waypoints:String,
         @Query("key") key:String = "AIzaSyCsCkw_FsKk5y3R3T6xNHdFSh_JZHFLkdk"
     ): JsonElement
 

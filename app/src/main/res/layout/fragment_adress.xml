@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="46dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Checkout"
+            android:textColor="@color/dark"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/back"
+            app:layout_constraintStart_toEndOf="@id/back"
+            app:layout_constraintTop_toTopOf="@id/back" />
+
+        <ImageView
+            android:id="@+id/imageDelivery"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="32dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_adress_delivery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <TextView
+            android:id="@+id/textDelivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="11dp"
+            android:text="Delivery"
+            android:textColor="@color/dark"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageDelivery" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dividerDelivery"
+            android:layout_width="100dp"
+            android:layout_height="3dp"
+            app:dividerColor="@color/orange"
+            app:layout_constraintBottom_toBottomOf="@id/imageDelivery"
+            app:layout_constraintStart_toEndOf="@id/imageDelivery"
+            app:layout_constraintTop_toTopOf="@id/imageDelivery" />
+
+        <ImageView
+            android:id="@+id/imageAddress"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="32dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_adress_adress"
+            app:layout_constraintStart_toEndOf="@id/dividerDelivery"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <TextView
+            android:id="@+id/textAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-8dp"
+            android:layout_marginTop="11dp"
+            android:text="Address"
+            android:textColor="@color/dark"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/imageAddress"
+            app:layout_constraintTop_toBottomOf="@id/imageAddress" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dividerAddress"
+            android:layout_width="100dp"
+            android:layout_height="3dp"
+            app:dividerColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/imageAddress"
+            app:layout_constraintStart_toEndOf="@id/imageAddress"
+            app:layout_constraintTop_toTopOf="@id/imageAddress" />
+
+        <ImageView
+            android:id="@+id/imagePayment"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="51dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_adress_payment"
+            app:layout_constraintStart_toEndOf="@id/dividerAddress"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <TextView
+            android:id="@+id/textPayment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-8dp"
+            android:layout_marginTop="11dp"
+            android:text="Payment"
+            android:textColor="@color/dark"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/imagePayment"
+            app:layout_constraintTop_toBottomOf="@id/imagePayment" />
+
+        <TextView
+            android:id="@+id/textFullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="38dp"
+            android:text="Full Name"
+            android:textColor="@color/dark"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textDelivery" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fullName_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="18dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconTint="@color/orange"
+            app:layout_constraintTop_toBottomOf="@id/textFullName"
+            app:startIconTint="@color/soft_gray">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_field_background"
+                android:hint="Full Name"
+                android:inputType="text"
+                android:textColor="@color/dark" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:text="Email Address"
+            android:textColor="@color/dark"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fullName_layout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="18dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconTint="@color/orange"
+            app:layout_constraintTop_toBottomOf="@id/textEmail"
+            app:startIconTint="@color/soft_gray">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_field_background"
+                android:hint="Email Address"
+                android:inputType="text"
+                android:textColor="@color/dark" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:text="Phone Number"
+            android:textColor="@color/dark"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email_layout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phone_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="18dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconTint="@color/orange"
+            app:layout_constraintTop_toBottomOf="@id/textPhone"
+            app:startIconTint="@color/soft_gray">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_field_background"
+                android:hint="Enter your phone number"
+                android:inputType="text"
+                android:textColor="@color/dark" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/text_Address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:text="Address"
+            android:textColor="@color/dark"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/phone_layout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/address_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="18dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconTint="@color/orange"
+            app:layout_constraintTop_toBottomOf="@id/text_Address"
+            app:startIconTint="@color/soft_gray">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_field_background"
+                android:hint="Enter your home address"
+                android:inputType="text"
+                android:textColor="@color/dark" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textZipCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:text="Zip Code"
+            android:textColor="@color/dark"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/address_layout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/zipCode_layout"
+            android:layout_width="146dp"
+            android:layout_height="61dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="18dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconTint="@color/orange"
+            app:layout_constraintTop_toBottomOf="@id/textZipCode"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp"
+            app:startIconTint="@color/soft_gray"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/zipCode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/input_field_background"
+                android:hint="Zip Code"
+                android:inputType="text"
+                android:textColor="@color/dark"
+                tools:ignore="MissingConstraints" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/textCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/dark"
+            android:text="City"
+            app:layout_constraintTop_toBottomOf="@id/address_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="146dp"
+            android:layout_marginTop="24dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/City_layout"
+            android:layout_width="146dp"
+            android:layout_height="61dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="18dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconTint="@color/orange"
+            app:startIconTint="@color/soft_gray"
+            app:layout_constraintTop_toTopOf="@id/zipCode_layout"
+            app:layout_constraintBottom_toBottomOf="@id/zipCode_layout"
+            app:layout_constraintStart_toEndOf="@id/zipCode_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/City"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/input_field_background"
+                android:hint="City"
+                android:inputType="text"
+                android:textColor="@color/dark"
+                tools:ignore="MissingConstraints" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Country"
+            android:textSize="16sp"
+            android:textColor="@color/dark"
+            app:layout_constraintTop_toBottomOf="@id/City_layout"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/country_layout"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="18dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconTint="@color/orange"
+            app:startIconTint="@color/soft_gray"
+            app:layout_constraintTop_toBottomOf="@id/country"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/country"
+                android:background="@drawable/input_field_background"
+                android:hint="Choose your country"
+                android:paddingStart="15dp"
+                android:completionThreshold="1"
+                android:drawableEnd="@drawable/ic_address_chevron"
+                android:padding="18dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/shippingAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="22dp"
+            android:text="Save shipping address"
+            android:textColor="@color/dark"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/country_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:checked="true" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/apply"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/button_background"
+            android:text="Next"
+            android:textAllCaps="true"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shippingAddress" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

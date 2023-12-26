@@ -112,9 +112,11 @@ dependencies {
 
     implementation("androidx.paging:paging-runtime:$paging_version")
 
-//swipe refresh
+    //swipe refresh
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     implementation ("com.google.android.gms:play-services-maps:18.1.0")
+
+    implementation( "org.java-websocket:Java-WebSocket:1.5.4")
 
 }

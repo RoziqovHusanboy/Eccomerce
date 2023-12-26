@@ -6,7 +6,9 @@ import com.example.eccomerce.data.api.order.dto.Track
 import com.example.eccomerce.domain.model.Cart
 import com.example.eccomerce.domain.model.Order
 import com.example.eccomerce.domain.model.Status
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.flow.Flow
+import java.util.HashMap
 
 interface OrderRepository {
 
@@ -14,6 +16,7 @@ interface OrderRepository {
    suspend fun createOrder(promo: String?=null)
    fun getOrders(status: Status): Flow<PagingData<Order>>
    suspend fun getTrack(id:Int):Track
-   suspend fun getDirections(track: Track):List<List<HashMap<String,String>>>
+   fun getDirections(track: Track): Flow<Pair<LatLng,List<List<HashMap<String, String>>>>>
+
 
 }

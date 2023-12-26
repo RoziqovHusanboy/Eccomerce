@@ -14,5 +14,6 @@
     <color name="yellow">#FFA902</color>
     <color name="on_delivery_background">#FFEECC</color>
     <color name="green">#1CAF5E</color>
+    <color name="dark_gray">#959595</color>
 
 </resources>

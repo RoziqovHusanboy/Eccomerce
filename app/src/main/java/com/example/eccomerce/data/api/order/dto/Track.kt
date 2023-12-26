@@ -9,5 +9,7 @@ data class Track(
     @SerializedName("from")
     val from: Location,
     @SerializedName("to")
-    val to: Location
+    val to: Location,
+    @SerializedName("server")
+    val server:String
 )

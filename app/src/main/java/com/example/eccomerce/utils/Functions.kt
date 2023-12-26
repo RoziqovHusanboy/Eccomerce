@@ -3,13 +3,22 @@ package com.example.eccomerce.utils
 import android.app.Activity
 import android.content.Context
 import android.content.res.Resources.getSystem
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Build
 import android.view.View
 import android.view.WindowInsetsController
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.eccomerce.R
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 
 fun Fragment.toast(massage:Int){
     Toast.makeText(requireContext(), massage, Toast.LENGTH_SHORT).show()
@@ -59,3 +68,22 @@ fun Context.showKeyboard(view: View) {
     inputMethodManager.showSoftInput(view, 0)
 }
 val Int.dp: Int get() = (this * getSystem().displayMetrics.density).toInt()
+fun String.toLatLng(): LatLng {
+    val coordinates = split(", ")
+   return LatLng(
+        coordinates[0].toDouble(),
+        coordinates[1].toDouble()
+    )
+}
+fun GoogleMap.addMarker(context:Context, drawable:Int, dimen:Int, location:LatLng):Marker?{
+
+    val bitmap = Bitmap.createBitmap(dimen, dimen, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(bitmap)
+    val shape = ContextCompat.getDrawable(context,drawable) ?: return null
+    shape.setBounds(0, 0, bitmap.width, bitmap.height)
+    shape.draw(canvas)
+  return  addMarker(
+            MarkerOptions().position(location).anchor(.5f, .5f)
+                .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
+            )
+}
